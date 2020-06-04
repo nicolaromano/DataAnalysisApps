@@ -1,0 +1,10 @@
+body
+  {
+  font-family: 'Roboto Slab', serif;
+  font-size: 11pt;
+  }
+  
+abbr
+  {
+  text-decoration: underline gray dotted;
+  }

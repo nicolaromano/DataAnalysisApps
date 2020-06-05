@@ -4,8 +4,9 @@ library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(stringr)
+library(shinyjs)
 
-set.seed(12345)
+source("uiUtils.R")
 
 # An environment to store app-wide variables
 app.env <- new.env()
@@ -27,7 +28,7 @@ onStop(function()
 #' @return The string (processed with glossary terms)
 getAppString <- function(label)
   {
-  sql <- "SELECT text FROM app_strings WHERE label=?label"
+  sql <- "SELECT text FROM app_string WHERE label=?label"
   query <- sqlInterpolate(app.env$DB.conn, sql, label = label)
   res <- dbGetQuery(app.env$DB.conn, query)
   

@@ -3,22 +3,30 @@ dashboardPage(
     dashboardHeader(title = "Linear regression - Introduction", titleWidth = 400),
     dashboardSidebar(disable = TRUE),
     dashboardBody(
+        useShinyjs(),
+        
         tags$head
             (
             # Roboto Slab font
-            tags$link(rel = "stylesheet", type = "text/css",
-                      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;400;700&display=swap"),
+            singleton(tags$link(rel = "stylesheet", type = "text/css",
+                      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;400;700&display=swap")),
             # Our CSS
-            tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
+            singleton(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
             # Our JS scripts
-            #tags$script(src="scripts.js")
+            singleton(tags$script(src="scripts.js"))
             ),
             
         fluidRow(
             column(width = 12,
                    box(width = 12, title = "Introduction", status = "success", solidHeader = T,
                        column(width = 6,
-                              uiOutput("page1_intro")),
+                              uiOutput("page1_intro"),
+                              actionBttn("startQuestions", "Answer questions", 
+                                         icon = icon("question-circle"),
+                                         style = "material-flat", size = "sm", color = "success"),
+                              conditionalPanel("input.startQuestions > 0",
+                                addQuestions(c("lin_reg_type", "lin_predictor")))
+                              ),
                        column(width = 6,
                               plotOutput("page1_dataPlot"))))
             ) # end fluidRow

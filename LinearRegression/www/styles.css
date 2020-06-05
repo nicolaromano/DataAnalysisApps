@@ -8,3 +8,8 @@ abbr
   {
   text-decoration: underline gray dotted;
   }
+  
+button
+  {
+  font-size: 1em;
+  }

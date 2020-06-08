@@ -25,7 +25,13 @@ dashboardPage(
                                          icon = icon("question-circle"),
                                          style = "material-flat", size = "sm", color = "success"),
                               conditionalPanel("input.startQuestions > 0",
-                                addQuestions(c("lin_reg_type", "lin_predictor")))
+                                addQuestions(c("lin_reg_type", "lin_predictor"))),
+                              hidden(actionBttn("gotoNextPage", "Next page", 
+                                                 icon = icon("arrow-right"),
+                                                 style = "material-flat", size = "sm", color = "success")),
+                              hidden(actionBttn("retry", "Try again!", 
+                                                 icon = icon("question-circle"),
+                                                 style = "material-flat", size = "sm", color = "primary"))
                               ),
                        column(width = 6,
                               plotOutput("page1_dataPlot"))))

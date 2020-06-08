@@ -34,7 +34,9 @@ function checkAnswers()
                                                  ids = n.id.split("_");
                                                  return ids[1];  
                                                  });
-                                                 
+  
+  allcorrect = true;
+  
   for (var i=0; i<qids.length; i++)
     {
     if (qtype[i] == "mcq")
@@ -55,6 +57,7 @@ function checkAnswers()
         {
         $($("#question_mcq_"+qids[i]).children()[0]).prepend("<i class='fa fa-times-circle'></i> ");
         $($("#question_mcq_"+qids[i]).children()[0]).css("color", "red");
+        allcorrect = false;
         }
       }
     else if (qtype[i] == "mcqs")
@@ -73,7 +76,22 @@ function checkAnswers()
         {
         $($("#question_mcqs_"+qids[i]).children()[0]).prepend("<i class='fa fa-times-circle'></i> ");
         $($("#question_mcqs_"+qids[i]).children()[0]).css("color", "red");
+        allcorrect = false;
         }
       }
+    }
+    
+  $("#submitAnswers").addClass("shinyjs-hide");
+  
+  if (allcorrect === true)
+    {
+    $("#gotoNextPage").removeClass("shinyjs-hide");
+    $("#retry").addClass("shinyjs-hide");
+    }
+  else
+    {
+    $("#gotoNextPage").addClass("shinyjs-hide");
+    $("#retry").removeClass("shinyjs-hide");
+    $("#retry").click(function(){location.reload();});
     }
   }

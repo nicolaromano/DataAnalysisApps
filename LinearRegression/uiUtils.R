@@ -18,15 +18,12 @@ addQuestions <- function(labels)
     
     if (nrow(res)) # We found the question
       {
-      # We shuffle the answers. Note that we could ORDER BY RANDOM, but
-      # that does not seem to work inside a Shiny app...
-      
       if (res$type[1] == "mcq")
         {
         answers <- setNames(paste0("ans_",res$ansid), res$anstext)
         questions[[l]] <- tagList(div(id = paste0("question_mcq_", res$qid[1]),
                                       div(res$question[1]), 
-                                      tag("input", list(type = "hidden", 
+                                      tag("input", list(type = "hidden",
                                                         id = paste0("ca_",res$qid[1]),
                                                         value = paste0(res$ansid[res$anscorrect==1], 
                                                                        collapse = ","))),

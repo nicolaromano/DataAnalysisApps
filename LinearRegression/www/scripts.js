@@ -85,13 +85,16 @@ function checkAnswers()
   
   if (allcorrect === true)
     {
-    $("#gotoNextPage").removeClass("shinyjs-hide");
-    $("#retry").addClass("shinyjs-hide");
+    // Note that since these buttons are created within a module, they are prefixed
+    // with the module namespace, so we need to use id*= to find the button by partial id
+    // See https://api.jquery.com/attribute-contains-selector/
+    $("[id*=gotoNextPage]").removeClass("shinyjs-hide");
+    $("[id*=retry]").addClass("shinyjs-hide");
     }
   else
     {
-    $("#gotoNextPage").addClass("shinyjs-hide");
-    $("#retry").removeClass("shinyjs-hide");
-    $("#retry").click(function(){location.reload();});
+    $("[id*=gotoNextPage]").addClass("shinyjs-hide");
+    $("[id*=retry]").removeClass("shinyjs-hide");
+    $("[id*=retry]").click(function(){location.reload();});
     }
   }

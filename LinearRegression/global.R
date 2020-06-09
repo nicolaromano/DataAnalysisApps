@@ -7,6 +7,7 @@ library(stringr)
 library(shinyjs)
 
 source("uiUtils.R")
+source("pageModules.R")
 
 # An environment to store app-wide variables
 app.env <- new.env()

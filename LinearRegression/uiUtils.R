@@ -56,4 +56,4 @@ addQuestions <- function(labels)
   
   # Return the questions UI 
   questions
-  }
+}

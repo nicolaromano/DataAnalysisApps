@@ -16,6 +16,7 @@ dashboardPage(
             singleton(tags$script(src="scripts.js"))
             ),
         
-        lmPage1UI("page1")
+        div(id="pageContent",
+            lmPage1UI("page1")),
         ) # end dashboardBody
     ) # end dashboardPage

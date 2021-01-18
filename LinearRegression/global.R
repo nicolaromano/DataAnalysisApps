@@ -18,6 +18,9 @@ app.env$DB.conn <- dbPool(
   drv = RSQLite::SQLite(),
   dbname = "linearRegression.db") # This stores app info, such as text strings
 
+app.env$linreg.data <- data.frame(Predictor = runif(30, -30, 50))
+app.env$linreg.data$Outcome = 2 * app.env$linreg.data$Predictor + 5 + rnorm(30, 0, 10)
+
 # Close DB connection when stopping app
 onStop(function() 
   {
@@ -49,6 +52,10 @@ processString <- function(str)
   
   # Find each token [[xxx,yyy]]
   tokens <- unlist(str_extract_all(str, "\\[\\[([^\\]]+)\\]\\]"))
+
+  if (!length(tokens))
+    return(unlist(str, use.names = F))
+  
   # Get rid of the [[]] by using substr, and split by ,
   tokens <- strsplit(substr(tokens, 3, nchar(tokens)-2), ",")
   # Convert into a matrix
@@ -78,4 +85,4 @@ processString <- function(str)
   
   # Return the processed string
   str
-  }
+}
